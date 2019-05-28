@@ -21,7 +21,7 @@ namespace DNS.Server {
                 patterns[i] = label == "*" ? "(\\w+)" : Regex.Escape(label);
             }
 
-            Regex re = new Regex("^" + string.Join("\\.", patterns) + "$");
+            Regex re = new Regex("^" + string.Join("\\.", patterns) + "$",RegexOptions.IgnoreCase);
             return re.IsMatch(domain.ToString());
         }
 
