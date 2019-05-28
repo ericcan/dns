@@ -37,7 +37,11 @@ namespace DNS.Protocol.ResourceRecords {
         }
 
         private static IList<CharacterString> FormatAttributeNameValue(string attributeName, string attributeValue) {
-            return CharacterString.FromString($"{Escape(attributeName)}{attributeValue}");
+            if(attributeName.Length>0)
+            {
+                return CharacterString.FromString($"{Escape(attributeName)}={attributeValue}");
+            }
+            return CharacterString.FromString($"{attributeValue}");
         }
 
         public TextResourceRecord(IResourceRecord record) :
